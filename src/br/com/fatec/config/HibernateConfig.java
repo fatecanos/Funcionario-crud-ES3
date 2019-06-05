@@ -8,9 +8,15 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
+import br.com.fatec.model.domain.Cargo;
+import br.com.fatec.model.domain.Funcionario;
+import br.com.fatec.model.domain.Regional;
+import br.com.fatec.model.domain.Setor;
+import br.com.fatec.model.domain.Usuario;
+
 public class HibernateConfig {
 	private static SessionFactory sessionFactory;
-	protected static final String BANCO = "bdFuncionario";
+	protected static final String BANCO = "db_funcionario";
 	protected static final String SENHA = "";
 	
     public static SessionFactory getSessionFactory() {
@@ -32,6 +38,12 @@ public class HibernateConfig {
                 configuration.setProperties(settings);
 
                 //CLASSES ENTIDADE
+                configuration.addAnnotatedClass(Usuario.class);
+                configuration.addAnnotatedClass(Regional.class);
+                configuration.addAnnotatedClass(Setor.class);
+                configuration.addAnnotatedClass(Cargo.class);
+                configuration.addAnnotatedClass(Funcionario.class);
+                
                 
                 ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                     .applySettings(configuration.getProperties()).build();

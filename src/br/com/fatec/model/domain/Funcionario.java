@@ -2,23 +2,66 @@ package br.com.fatec.model.domain;
 
 import java.time.LocalDate;
 
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
+@Entity
 public class Funcionario {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	private String nome;
-	private LocalDate dataContratacao;
-	private int numeroMatricula;
-	private String cpf;
-	private String email;
-	private CategoriaInativacao categoriaInativacao;
-	private Cargo cargo;
-	private Usuario usuario;
 	
-	public int getId() {
-		return id;
+	@Column(name="is_ativo", nullable=false)
+	private boolean isAtivo;
+	
+	@Column(name="nome_funcionario")
+	private String nome;
+	
+	@Column(name="data_contratacao", nullable=false)
+	private LocalDate dataContratacao;
+	
+	private int numeroMatricula;
+	
+	@Column(name="cpf", nullable=false)
+	private String cpf;
+	
+	@Column(name="email", nullable=false)
+	private String email;
+	
+	@Column(name="data_cadastro", nullable=false)
+	private LocalDate dataCadastro;
+	
+	@OneToOne
+	private Cargo cargo;
+	
+	@OneToOne
+	@JoinColumn(name="usuario_responsavel_cadastro")
+	private Usuario usuario;
+
+	public Funcionario() {
+		super();
 	}
-	public void setId(int id) {
+	
+	public Funcionario(int id, boolean isAtivo, String nome, LocalDate dataContratacao, int numeroMatricula, String cpf,
+			String email, CategoriaInativacao categoriaInativacao, Cargo cargo, Usuario usuario) {
+		super();
 		this.id = id;
+		this.isAtivo = isAtivo;
+		this.nome = nome;
+		this.dataContratacao = dataContratacao;
+		this.numeroMatricula = numeroMatricula;
+		this.cpf = cpf;
+		this.email = email;
+		this.cargo = cargo;
+		this.usuario = usuario;
 	}
+	
 	public String getNome() {
 		return nome;
 	}
@@ -49,12 +92,6 @@ public class Funcionario {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public CategoriaInativacao getCategoriaInativacao() {
-		return categoriaInativacao;
-	}
-	public void setCategoriaInativacao(CategoriaInativacao categoriaInativacao) {
-		this.categoriaInativacao = categoriaInativacao;
-	}
 	public Cargo getCargo() {
 		return cargo;
 	}
@@ -66,6 +103,25 @@ public class Funcionario {
 	}
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	public int getId() {
+		return id;
+	}
+	public boolean isAtivo() {
+		return isAtivo;
+	}
+
+	public void setAtivo(boolean isAtivo) {
+		this.isAtivo = isAtivo;
+	}
+
+	public LocalDate getDataCadastro() {
+		return dataCadastro;
+	}
+
+	public void setDataCadastro(LocalDate dataCadastro) {
+		this.dataCadastro = dataCadastro;
 	}
 	
 	
