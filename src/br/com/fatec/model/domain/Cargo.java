@@ -2,16 +2,12 @@ package br.com.fatec.model.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import br.com.fatec.config.aplicacao.EntidadeDominio;
+
 @Entity
-public class Cargo{
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+public class Cargo extends EntidadeDominio{
 	
 	@Column(name="isAtivo", nullable=false)
 	private boolean isAtivo;
@@ -26,9 +22,8 @@ public class Cargo{
 		super();
 	}
 
-	public Cargo(int id, boolean isAtivo, String nome, Setor setor) {
+	public Cargo(boolean isAtivo, String nome, Setor setor) {
 		super();
-		this.id = id;
 		this.isAtivo = isAtivo;
 		this.nome = nome;
 		this.setor = setor;
@@ -45,10 +40,6 @@ public class Cargo{
 	}
 	public void setSetor(Setor setor) {
 		this.setor = setor;
-	}
-
-	public int getId() {
-		return id;
 	}
 
 	public boolean isAtivo() {

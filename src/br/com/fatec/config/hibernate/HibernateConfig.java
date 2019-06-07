@@ -1,4 +1,4 @@
-package br.com.fatec.config;
+package br.com.fatec.config.hibernate;
 
 import java.util.Properties;
 

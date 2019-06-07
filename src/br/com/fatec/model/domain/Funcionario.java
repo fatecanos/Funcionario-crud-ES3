@@ -5,22 +5,18 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+import br.com.fatec.config.aplicacao.EntidadeDominio;
+
 @Entity
-public class Funcionario {
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+public class Funcionario extends EntidadeDominio{
 	
 	@Column(name="is_ativo", nullable=false)
 	private boolean isAtivo;
 	
-	@Column(name="nome_funcionario")
+	@Column(name="nome_funcionario", nullable=false)
 	private String nome;
 	
 	@Column(name="data_contratacao", nullable=false)
@@ -48,10 +44,9 @@ public class Funcionario {
 		super();
 	}
 	
-	public Funcionario(int id, boolean isAtivo, String nome, LocalDate dataContratacao, int numeroMatricula, String cpf,
+	public Funcionario(boolean isAtivo, String nome, LocalDate dataContratacao, int numeroMatricula, String cpf,
 			String email, CategoriaInativacao categoriaInativacao, Cargo cargo, Usuario usuario) {
 		super();
-		this.id = id;
 		this.isAtivo = isAtivo;
 		this.nome = nome;
 		this.dataContratacao = dataContratacao;
@@ -105,9 +100,6 @@ public class Funcionario {
 		this.usuario = usuario;
 	}
 
-	public int getId() {
-		return id;
-	}
 	public boolean isAtivo() {
 		return isAtivo;
 	}

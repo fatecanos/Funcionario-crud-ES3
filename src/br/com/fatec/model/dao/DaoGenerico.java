@@ -5,11 +5,14 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import br.com.fatec.config.HibernateConfig;
+import br.com.fatec.config.aplicacao.EntidadeDominio;
+import br.com.fatec.config.hibernate.HibernateConfig;
+import br.com.fatec.config.patterns.IDao;
 
-public class DaoGenerico {
+public class DaoGenerico implements IDao{
 	
-	public static <T> void salvar(T entidade) {
+	@Override
+	public <T> void salva(EntidadeDominio entidade){
 		Transaction transaction = null;
 		
 		try(Session session = HibernateConfig.getSessionFactory().openSession()){
@@ -25,6 +28,7 @@ public class DaoGenerico {
 		}
 	}
 	
+	@Override
 	@SuppressWarnings("unchecked")
 	public <T> List<T> listarTodos(Class<T> entidade) {
 		Transaction transaction = null;
@@ -33,7 +37,6 @@ public class DaoGenerico {
 			
 			transaction = session.getTransaction();
 			transaction.begin();
-			
 			
 			entidades = session.createQuery("FROM "+entidade.getName()).getResultList();
 			
@@ -45,5 +48,23 @@ public class DaoGenerico {
 			e.printStackTrace();
 			return null;
 		}
+	}
+
+	@Override
+	public <T> void atualiza(T entidade) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public <T> void exclui(T entidade) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public <T> T buscarPorId(int id, Class<T> entidade) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

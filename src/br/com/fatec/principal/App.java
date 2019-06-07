@@ -1,8 +1,8 @@
 package br.com.fatec.principal;
 
 import java.time.LocalDate;
-
-import br.com.fatec.model.dao.DaoGenerico;
+import br.com.fatec.config.aplicacao.Resultado;
+import br.com.fatec.controller.command.CadastrarCommand;
 import br.com.fatec.model.domain.Cargo;
 import br.com.fatec.model.domain.Funcionario;
 import br.com.fatec.model.domain.Regional;
@@ -12,29 +12,38 @@ import br.com.fatec.model.domain.Usuario;
 public class App {
 
 	public static void main(String[] args) {
+		Resultado resultado;
 		
 		Usuario usuario = new Usuario();
 		usuario.setAtivo(true);
 		usuario.setNome("tiozimdamanha");
 		usuario.setSenha("1234");
-		DaoGenerico.salvar(usuario);
+		resultado = new CadastrarCommand().executa(usuario);
+		System.out.println(resultado.getMensagem());
+		System.out.println("Status:" + resultado.getMotivo());
 		
 		Regional regional = new Regional();
 		regional.setNome("Sul");
 		regional.setAtivo(true);
-		DaoGenerico.salvar(regional);
+		resultado = new CadastrarCommand().executa(regional);
+		System.out.println(resultado.getMensagem());
+		System.out.println("Status:" + resultado.getMotivo());
 		
 		Setor setor = new Setor();
 		setor.setNome("Shield");
 		setor.setRegional(regional);
 		setor.setAtivo(true);
-		DaoGenerico.salvar(setor);
+		resultado = new CadastrarCommand().executa(setor);
+		System.out.println(resultado.getMensagem());
+		System.out.println("Status:" + resultado.getMotivo());
 		
 		Cargo cargo = new Cargo();
 		cargo.setNome("Administrativo");
 		cargo.setSetor(setor);
 		cargo.setAtivo(true);
-		DaoGenerico.salvar(cargo);
+		resultado = new CadastrarCommand().executa(cargo);
+		System.out.println(resultado.getMensagem());
+		System.out.println("Status:" + resultado.getMotivo());
 		
 		Funcionario funcionario = new Funcionario();
 		funcionario.setNome("Lucas Nogueira");
@@ -46,7 +55,9 @@ public class App {
 		funcionario.setDataCadastro(LocalDate.now());
 		funcionario.setAtivo(true);
 		
-		DaoGenerico.salvar(funcionario);
+		resultado = new CadastrarCommand().executa(funcionario);
+		System.out.println(resultado.getMensagem());
+		System.out.println("Status:" + resultado.getMotivo());
 	}
 
 }
