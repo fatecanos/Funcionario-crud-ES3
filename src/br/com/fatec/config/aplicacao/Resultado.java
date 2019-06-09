@@ -1,31 +1,31 @@
 package br.com.fatec.config.aplicacao;
 
-import java.util.LinkedList;
-import java.util.List;
-
 public class Resultado {
-	private String motivo;
+	private boolean status;
 	private String mensagem;
-	private List<EntidadeDominio> entidades = new LinkedList<>();
 	
+	public Resultado() {
+		super();
+	}
+	public Resultado(boolean status, String mensagem) {
+		super();
+		this.status = status;
+		this.mensagem = mensagem;
+	}
 	public String getMensagem() {
 		return mensagem;
 	}
 	public void setMensagem(String mensagem) {
 		this.mensagem = mensagem;
 	}
-	public List<EntidadeDominio> getEntidades() {
-		return entidades;
+	
+	public boolean getStatus() {
+		return status;
 	}
-	public void setEntidades(List<EntidadeDominio> entidades) {
-		this.entidades = entidades;
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
-	public String getMotivo() {
-		return motivo;
-	}
-	public void setMotivo(String motivo) {
-		this.motivo = motivo;
-	}
+
 	
 	
 }

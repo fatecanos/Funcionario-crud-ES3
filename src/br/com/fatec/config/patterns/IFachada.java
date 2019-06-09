@@ -1,12 +1,13 @@
 package br.com.fatec.config.patterns;
 
+import java.util.List;
+
 import br.com.fatec.config.aplicacao.EntidadeDominio;
-import br.com.fatec.config.aplicacao.Resultado;
 
 public interface IFachada {
-	public Resultado cadastrar(EntidadeDominio e);
-	public Resultado editar(EntidadeDominio e);
-	public Resultado excluir(EntidadeDominio e);
-	public Resultado consultarTodos(EntidadeDominio e);
-	public Resultado consultarPorId(EntidadeDominio e);
+	public String cadastrar(EntidadeDominio e);
+	public String editar(EntidadeDominio e);
+	public String excluir(EntidadeDominio e);
+	public <T> List<T> consultarTodos(Class<T> e);
+	public EntidadeDominio consultarPorId(EntidadeDominio e);
 }

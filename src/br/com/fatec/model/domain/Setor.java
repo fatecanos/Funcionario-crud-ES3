@@ -5,8 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 
 import br.com.fatec.config.aplicacao.EntidadeDominio;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Getter @Setter
 public class Setor extends EntidadeDominio{
 	
 	@Column(name="is_ativo",nullable=false)
@@ -27,23 +30,11 @@ public class Setor extends EntidadeDominio{
 		this.nome = nome;
 		this.regional = regional;
 	}
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	public Regional getRegional() {
-		return regional;
-	}
-	public void setRegional(Regional regional) {
-		this.regional = regional;
-	}
-	public boolean isAtivo() {
-		return isAtivo;
-	}
-	public void setAtivo(boolean isAtivo) {
-		this.isAtivo = isAtivo;
+
+	@Override
+	public String processa() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

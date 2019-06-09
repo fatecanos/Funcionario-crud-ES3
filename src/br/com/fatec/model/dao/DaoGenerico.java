@@ -38,7 +38,7 @@ public class DaoGenerico implements IDao{
 			transaction = session.getTransaction();
 			transaction.begin();
 			
-			entidades = session.createQuery("FROM "+entidade.getName()).getResultList();
+			entidades = session.createQuery("FROM "+entidade.getClass()).getResultList();
 			
 			transaction.commit();
 			session.close();
@@ -52,19 +52,42 @@ public class DaoGenerico implements IDao{
 
 	@Override
 	public <T> void atualiza(T entidade) {
-		// TODO Auto-generated method stub
+		Transaction transaction = null;
+		
+		try(Session session = HibernateConfig.getSessionFactory().openSession()){
+			transaction = session.getTransaction();
+			transaction.begin();
+			
+			session.update(entidade);
+			
+			transaction.commit();
+			session.close();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		
 	}
 
 	@Override
 	public <T> void exclui(T entidade) {
-		// TODO Auto-generated method stub
+		Transaction transaction = null;
+		
+		try(Session session = HibernateConfig.getSessionFactory().openSession()){
+			transaction = session.getTransaction();
+			transaction.begin();
+			
+			session.remove(entidade);
+			
+			transaction.commit();
+			session.close();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		
 	}
 
 	@Override
 	public <T> T buscarPorId(int id, Class<T> entidade) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }

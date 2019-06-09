@@ -1,28 +1,27 @@
 package br.com.fatec.principal;
 
-import java.time.LocalDate;
-import br.com.fatec.config.aplicacao.Resultado;
-import br.com.fatec.controller.command.CadastrarCommand;
-import br.com.fatec.model.domain.Cargo;
-import br.com.fatec.model.domain.Funcionario;
-import br.com.fatec.model.domain.Regional;
-import br.com.fatec.model.domain.Setor;
+import br.com.fatec.config.aplicacao.Broker;
+import br.com.fatec.controller.command.Cadastrar;
 import br.com.fatec.model.domain.Usuario;
 
 public class App {
 
 	public static void main(String[] args) {
-		Resultado resultado;
 		
 		Usuario usuario = new Usuario();
-		usuario.setAtivo(true);
-		usuario.setNome("tiozimdamanha");
-		usuario.setSenha("1234");
-		resultado = new CadastrarCommand().executa(usuario);
-		System.out.println(resultado.getMensagem());
-		System.out.println("Status:" + resultado.getMotivo());
+		usuario.setIsAtivo(true);
+		usuario.setNome("tzm");
+		usuario.setSenha("39940030");
+	
+		Cadastrar cad = new Cadastrar();
 		
-		Regional regional = new Regional();
+		Broker broker = new Broker();
+		broker.setEntidade(usuario);
+		broker.adicionaComando(cad);
+		//broker.adicionaComando(excluir);
+		broker.executarAcoes();
+		
+		/*Regional regional = new Regional();
 		regional.setNome("Sul");
 		regional.setAtivo(true);
 		resultado = new CadastrarCommand().executa(regional);
@@ -57,7 +56,7 @@ public class App {
 		
 		resultado = new CadastrarCommand().executa(funcionario);
 		System.out.println(resultado.getMensagem());
-		System.out.println("Status:" + resultado.getMotivo());
+		System.out.println("Status:" + resultado.getMotivo());*/
 	}
 
 }
