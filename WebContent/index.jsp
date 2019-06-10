@@ -17,6 +17,7 @@ pageEncoding="ISO-8859-1"
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" />
 	</head>
 	<body>
+		<div><%=request.getAttribute("resposta")%></div>
 		<div class="container-fluid h-100 bg-secondary">
 			<div class="col-4 offset-4 h-100">
 				<div class ="card card-login">

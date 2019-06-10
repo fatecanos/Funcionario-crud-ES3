@@ -29,11 +29,11 @@ public class HibernateConfig {
                 settings.put(Environment.DRIVER, "com.mysql.cj.jdbc.Driver");
                 settings.put(Environment.URL, 	 "jdbc:mysql://localhost:3306/"+ BANCO +"?serverTimezone=UTC");
                 settings.put(Environment.USER, 	 "root");
-                settings.put(Environment.PASS, 	 SENHA);          
+                settings.put(Environment.PASS, 	 SENHA);      
                 settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");//what is it?
-                settings.put(Environment.SHOW_SQL, "true");
+                settings.put(Environment.SHOW_SQL, "false");
                 settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread"); 
-                settings.put(Environment.HBM2DDL_AUTO, "create-drop"); //which are actions that it avaliable?
+                settings.put(Environment.HBM2DDL_AUTO, "update"); //which are actions that it avaliable?
 
                 configuration.setProperties(settings);
 
@@ -43,8 +43,7 @@ public class HibernateConfig {
                 configuration.addAnnotatedClass(Setor.class);
                 configuration.addAnnotatedClass(Cargo.class);
                 configuration.addAnnotatedClass(Funcionario.class);
-                
-                
+              
                 ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                     .applySettings(configuration.getProperties()).build();
 

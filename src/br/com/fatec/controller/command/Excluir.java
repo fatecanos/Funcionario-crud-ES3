@@ -1,17 +1,15 @@
 package br.com.fatec.controller.command;
 
 import br.com.fatec.config.aplicacao.EntidadeDominio;
-import br.com.fatec.config.patterns.ICommand;
-import br.com.fatec.controller.facade.Fachada;
+import br.com.fatec.config.aplicacao.Resultado;
+import br.com.fatec.config.patterns.Command;
 
-public class Excluir implements ICommand{
+public class Excluir extends Command{
 
-	private Fachada fachada;
-	
 	@Override
-	public void executa(EntidadeDominio e) {
-		this.fachada = new Fachada();
-		System.out.println(this.fachada.excluir(e));
+	public Resultado executa(EntidadeDominio e) {
+		// TODO Auto-generated method stub
+		return null;
 	}
-	
+
 }

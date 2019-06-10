@@ -1,6 +1,6 @@
 package br.com.fatec.principal;
 
-import br.com.fatec.config.aplicacao.Broker;
+import br.com.fatec.config.aplicacao.Resultado;
 import br.com.fatec.controller.command.Cadastrar;
 import br.com.fatec.model.domain.Usuario;
 
@@ -10,16 +10,13 @@ public class App {
 		
 		Usuario usuario = new Usuario();
 		usuario.setIsAtivo(true);
-		usuario.setNome("lucas");
-		usuario.setSenha("1");
+		usuario.setNome("joao");
+		usuario.setSenha("122123123123");
 	
-		Cadastrar cad = new Cadastrar();
-		
-		Broker broker = new Broker();
-		broker.setEntidade(usuario);
-		broker.adicionaComando(cad);
-		broker.executarAcoes();
-		System.out.println(cad.getMensagem());
+		Cadastrar cad = new Cadastrar();	
+		Resultado resultado = cad.executa(usuario);
+		System.out.println(resultado.getMensagem());
+		System.out.println(resultado.getMotivo());
 		
 		/*Regional regional = new Regional();
 		regional.setNome("Sul");

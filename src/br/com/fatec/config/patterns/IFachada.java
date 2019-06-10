@@ -3,11 +3,14 @@ package br.com.fatec.config.patterns;
 import java.util.List;
 
 import br.com.fatec.config.aplicacao.EntidadeDominio;
+import br.com.fatec.config.aplicacao.Resultado;
+import br.com.fatec.model.domain.CategoriaInativacao;
 
 public interface IFachada {
-	public String cadastrar(EntidadeDominio e);
-	public String editar(EntidadeDominio e);
-	public String excluir(EntidadeDominio e);
+	public Resultado cadastrar(EntidadeDominio e);
+	public Resultado editar(EntidadeDominio e);
+	public Resultado excluir(EntidadeDominio e);
+	public Resultado inativar(EntidadeDominio e, CategoriaInativacao catInativacao);
+	public Resultado ativar(EntidadeDominio e, CategoriaInativacao catInativacao);
 	public <T> List<T> consultarTodos(Class<T> e);
-	public EntidadeDominio consultarPorId(EntidadeDominio e);
 }

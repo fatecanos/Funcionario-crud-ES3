@@ -2,16 +2,15 @@ package br.com.fatec.controller.command;
 
 
 import br.com.fatec.config.aplicacao.EntidadeDominio;
-import br.com.fatec.config.patterns.ICommand;
-import br.com.fatec.controller.facade.Fachada;
+import br.com.fatec.config.aplicacao.Resultado;
+import br.com.fatec.config.patterns.Command;
 
-public class Atualizar implements ICommand{
-
-	private Fachada fachada = new Fachada();
+public class Atualizar extends Command{
 
 	@Override
-	public void executa(EntidadeDominio e) {
-		System.out.println(fachada.editar(e));
+	public Resultado executa(EntidadeDominio e) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

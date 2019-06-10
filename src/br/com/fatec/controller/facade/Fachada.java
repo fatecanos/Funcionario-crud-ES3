@@ -7,34 +7,47 @@ import br.com.fatec.config.aplicacao.Resultado;
 import br.com.fatec.config.patterns.IFachada;
 import br.com.fatec.controller.strategy.Validate;
 import br.com.fatec.model.dao.DaoGenerico;
+import br.com.fatec.model.domain.CategoriaInativacao;
 
 public class Fachada implements IFachada{
-
+	
+	DaoGenerico dao = new DaoGenerico();
+	
 	@Override
-	public String cadastrar(EntidadeDominio e) {
+	public Resultado cadastrar(EntidadeDominio e) {
 		Resultado resultadoValidacao = Validate.valida(e);
 		if(resultadoValidacao.getStatus()) {
 			try {
-				new DaoGenerico().salva(e);
-				return e.getClass().getSimpleName()+" cadastrado com sucesso";
+				dao.salva(e);
+				return new Resultado("Cadastro efetuado com sucesso", "ok", true);
 			}catch (Exception excessao) {
-				return "Erro ao cadastrar";
+				return new Resultado("Erro ao cadastrar", "erro de persistencia", false);
 			}
 		}else {
-			return resultadoValidacao.getMensagem() + ": "+ resultadoValidacao.getMotivo();
+			return resultadoValidacao;
 		}
 	}
 
 	@Override
-	public String editar(EntidadeDominio e) {
-		new DaoGenerico().atualiza(e);
-		return e.getClass().getSimpleName()+": Atualizado com sucesso!";
+	public Resultado editar(EntidadeDominio e) {
+		try {
+			new DaoGenerico().atualiza(e);
+			return new Resultado("Atualização efetuada com sucesso", "ok", true);
+		}catch(Exception ex) {
+			ex.printStackTrace();
+			return new Resultado("Erro ao atualizar", "erro no banco de dados", false);
+		}
 	}
 
 	@Override
-	public String excluir(EntidadeDominio e) {
-		new DaoGenerico().exclui(e);
-		return e.getClass().getSimpleName()+": Excluído com sucesso!";
+	public Resultado excluir(EntidadeDominio e) {
+		try {
+			new DaoGenerico().exclui(e);
+			return new Resultado("Exclusão efetuada com sucesso", "ok", true);
+		}catch(Exception ex) {
+			ex.printStackTrace();
+			return new Resultado("Erro ao excluir", "erro no banco de dados", false);
+		}
 	}
 
 	@Override
@@ -43,9 +56,15 @@ public class Fachada implements IFachada{
 	}
 
 	@Override
-	public EntidadeDominio consultarPorId(EntidadeDominio e) {
-		// TODO Auto-generated method stub
-		return null;
+	public Resultado inativar(EntidadeDominio e, CategoriaInativacao categoriaInativacao) {
+		e.setIsAtivo(false);
+		return cadastrar(categoriaInativacao);
+	}
+
+	@Override
+	public Resultado ativar(EntidadeDominio e, CategoriaInativacao catInativacao) {
+		e.setIsAtivo(true);
+		return excluir(catInativacao);
 	}
 
 	
