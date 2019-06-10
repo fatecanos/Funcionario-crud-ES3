@@ -5,11 +5,14 @@ import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 
 import br.com.fatec.config.aplicacao.EntidadeDominio;
+import br.com.fatec.config.aplicacao.Resultado;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Getter @Setter
+@Getter @Setter @NoArgsConstructor @AllArgsConstructor
 public class CategoriaInativacao extends EntidadeDominio{
 	
 	@Column(name="descricao", nullable=false)
@@ -17,18 +20,12 @@ public class CategoriaInativacao extends EntidadeDominio{
 	
 	@OneToOne
 	private EntidadeDominio entidade;
-	
-	public CategoriaInativacao() {}
-	
-	public CategoriaInativacao(String descricao) {
-		super();
-		this.descricao = descricao;
-	}
 
 	@Override
-	public String processa() {
+	public Resultado processa() {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
 
 }

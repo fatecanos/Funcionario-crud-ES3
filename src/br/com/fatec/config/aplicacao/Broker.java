@@ -6,29 +6,15 @@ import java.util.List;
 import br.com.fatec.config.patterns.ICommand;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter @Setter @AllArgsConstructor @NoArgsConstructor
+@Getter @Setter @AllArgsConstructor
 public class Broker {
-	List<ICommand> comandos = new LinkedList<>();
+	List<ICommand> comandos;
 	private EntidadeDominio entidade;
-	private Resultado resultado;
 	
-	public List<ICommand> getComandos() {
-		return comandos;
-	}
-
-	public void setComandos(List<ICommand> comandos) {
-		this.comandos = comandos;
-	}
-
-	public EntidadeDominio getEntidade() {
-		return entidade;
-	}
-
-	public void setEntidade(EntidadeDominio entidade) {
-		this.entidade = entidade;
+	public Broker() {
+		this.comandos = new LinkedList<>();
 	}
 
 	public void adicionaComando(ICommand acao) {
@@ -36,6 +22,9 @@ public class Broker {
 	}
 	
 	public void executarAcoes() {
-		comandos.forEach(comando -> comando.executa(entidade));
+		for(ICommand comando : comandos) {
+			comando.executa(entidade);
+		}
+		
 	}
 }

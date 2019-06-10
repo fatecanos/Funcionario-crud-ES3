@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+html, body {
+	height: 100%; 
+}
+
+.principal {
+	padding: 0;
+}
+
+.conteudo {
+	height: 93.7%;
+}
+
+.card-generico {
+	top: 1rem;
+	display: inline-block;
+	margin-left: 2%;
+}
+
+.card-login {
+	top: 14%;
+}
+
+.card-cad-usuario {
+	top: 13%;
+}
+
+.card-cad-funcionario {
+	top: 2%;
+}

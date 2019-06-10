@@ -5,11 +5,14 @@ import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 
 import br.com.fatec.config.aplicacao.EntidadeDominio;
+import br.com.fatec.config.aplicacao.Resultado;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
-@Getter @Setter
+@Entity 
+@Getter @Setter @NoArgsConstructor @AllArgsConstructor
 public class Setor extends EntidadeDominio{
 	
 	@Column(name="is_ativo",nullable=false)
@@ -20,19 +23,9 @@ public class Setor extends EntidadeDominio{
 	
 	@OneToOne
 	private Regional regional;
-	
-	public Setor() {
-		super();
-	}
-	public Setor(boolean isAtivo, String nome, Regional regional) {
-		super();
-		this.isAtivo = isAtivo;
-		this.nome = nome;
-		this.regional = regional;
-	}
 
 	@Override
-	public String processa() {
+	public Resultado processa() {
 		// TODO Auto-generated method stub
 		return null;
 	}

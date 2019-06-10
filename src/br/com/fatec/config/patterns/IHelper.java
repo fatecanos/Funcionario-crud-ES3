@@ -7,12 +7,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.fatec.config.aplicacao.EntidadeDominio;
-import br.com.fatec.config.aplicacao.Resultado;
 
 public interface IHelper {
 
 	public EntidadeDominio getEntidade(HttpServletRequest request);
-	public void setView(Resultado resultado,
+	public void setView(EntidadeDominio entidade,
 					    HttpServletRequest request,
 					    HttpServletResponse response) throws IOException, ServletException;
 }

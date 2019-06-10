@@ -1,4 +1,4 @@
-package br.com.fatec.controller.facade;
+	package br.com.fatec.controller.facade;
 
 import java.util.List;
 
@@ -12,12 +12,16 @@ public class Fachada implements IFachada{
 
 	@Override
 	public String cadastrar(EntidadeDominio e) {
-		Resultado resultado = Validate.valida(e);
-		if(!resultado.getStatus()) {
-			return e.getClass().getSimpleName()+": "+resultado.getMensagem();
+		Resultado resultadoValidacao = Validate.valida(e);
+		if(resultadoValidacao.getStatus()) {
+			try {
+				new DaoGenerico().salva(e);
+				return e.getClass().getSimpleName()+" cadastrado com sucesso";
+			}catch (Exception excessao) {
+				return "Erro ao cadastrar";
+			}
 		}else {
-			new DaoGenerico().salva(e);
-			return e.getClass().getSimpleName()+": "+resultado.getMensagem();
+			return resultadoValidacao.getMensagem() + ": "+ resultadoValidacao.getMotivo();
 		}
 	}
 

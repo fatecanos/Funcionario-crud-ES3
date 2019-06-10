@@ -10,16 +10,16 @@ public class App {
 		
 		Usuario usuario = new Usuario();
 		usuario.setIsAtivo(true);
-		usuario.setNome("tzm");
-		usuario.setSenha("39940030");
+		usuario.setNome("lucas");
+		usuario.setSenha("1");
 	
 		Cadastrar cad = new Cadastrar();
 		
 		Broker broker = new Broker();
 		broker.setEntidade(usuario);
 		broker.adicionaComando(cad);
-		//broker.adicionaComando(excluir);
 		broker.executarAcoes();
+		System.out.println(cad.getMensagem());
 		
 		/*Regional regional = new Regional();
 		regional.setNome("Sul");

@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 import br.com.fatec.config.aplicacao.EntidadeDominio;
+import br.com.fatec.config.aplicacao.Resultado;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -44,7 +45,7 @@ public class Funcionario extends EntidadeDominio{
 	private Usuario usuario;
 	
 	@Override
-	public String processa() {
+	public Resultado processa() {
 		/*if(this.nome.equals(null) || this.nome.equals("")
 		|| this.isAtivo.equals(null)
 		|| this.cargo.equals(null)

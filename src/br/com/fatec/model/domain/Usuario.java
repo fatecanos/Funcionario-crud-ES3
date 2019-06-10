@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 
 import br.com.fatec.config.aplicacao.EntidadeDominio;
+import br.com.fatec.config.aplicacao.Resultado;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,15 +21,23 @@ public class Usuario extends EntidadeDominio{
 	private String senha;
 
 	@Override
-	public String processa() {
+	public Resultado processa() {
+		Resultado resultado = new Resultado();
 		if(this.nome.equals("") || this.nome.equals(null)||
 				this.senha.equals("") || this.senha.equals(null)) {
-			return "Campo vazio";
+			resultado.setMensagem("Campos inválidos");
+			resultado.setMotivo("Campo vazio");
+			resultado.setStatus(false);
 		}else if(this.senha.length() < 8){
-			return "Senha muito curta";
+			resultado.setMensagem("Campos inválidos");
+			resultado.setMotivo("Senha muito curta");
+			resultado.setStatus(false);
 		}else {
-			return null;
+			resultado.setMensagem("Usuario é válido");
+			resultado.setMotivo("campos preenchidos corretamente");
+			resultado.setStatus(true);
 		}
+		return resultado;
 	}
 	
 }
