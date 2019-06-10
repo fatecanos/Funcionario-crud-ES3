@@ -4,10 +4,16 @@ import java.util.LinkedList;
 import java.util.List;
 
 import br.com.fatec.config.patterns.ICommand;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter @Setter @AllArgsConstructor @NoArgsConstructor
 public class Broker {
 	List<ICommand> comandos = new LinkedList<>();
 	private EntidadeDominio entidade;
+	private Resultado resultado;
 	
 	public List<ICommand> getComandos() {
 		return comandos;
