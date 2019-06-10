@@ -50,7 +50,7 @@ pageEncoding="ISO-8859-1"
 								<p class="card-text">Cadastre um novo funcionário no sistema.</p>
 							</div>
 							<div class="card-footer">
-								<a class="btn btn-primary" href="cadastro-funcionario.jsp">Cadastrar</a>
+								<a class="btn btn-primary btn-block" href="cadastro-funcionario.jsp">Cadastrar</a>
 							</div>
 						</div>
 						
@@ -62,7 +62,7 @@ pageEncoding="ISO-8859-1"
 								<p class="card-text">Remova um funcionário do sistema.</p>
 							</div>
 							<div class="card-footer">
-								<a class="btn btn-danger" href="cadastro-funcionario">Remover</a>
+								<a class="btn btn-danger btn-block" href="cadastro-funcionario">Remover</a>
 							</div>
 						</div>
 						
@@ -74,7 +74,7 @@ pageEncoding="ISO-8859-1"
 								<p class="card-text">Altere um funcionário do sistema.</p>
 							</div>
 							<div class="card-footer">
-								<a class="btn btn-warning" href="cadastro-funcionario">Alterar</a>
+								<a class="btn btn-warning btn-block" href="cadastro-funcionario">Alterar</a>
 							</div>
 						</div>
 					</div>
