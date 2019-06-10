@@ -7,8 +7,8 @@ pageEncoding="ISO-8859-1"
 <!DOCTYPE html>
 <html lang="pt-br">
 	<head>
-		<meta charset="UTF-8" />
-		<title>Login</title>
+		<meta charset="UTF-8">
+		<title>Cadastro de Usuário</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="author" content="Guilherme Puras & Lucas Nogueira" />
 		
@@ -19,49 +19,58 @@ pageEncoding="ISO-8859-1"
 	<body>
 		<div class="container-fluid h-100 bg-secondary">
 			<div class="col-4 offset-4 h-100">
-				<div class ="card card-login">
-					<div class="card-header bg-primary text-white text-center">
-						<h4>Login</h4>
+				<div class="card card-cad-usuario">
+					<div class="card-header">
+						<h3 class="text-center">Cadastro de Usuário</h3>
 					</div>
 					
 					<div class="card-body">
-						<form action="dashboard.jsp" method="POST">
+						<form action="cadastraUsuario" method="POST">
+							
 							<div class="form-group">
-								<label class="label" for="usuario">Usuário</label>
+								<label class="font-weight-bold" for="usuario">Usuário</label>
 								<div class="input-group">
 									<div class="input-group-prepend">
 										<span class="input-group-text"><i class="fas fa-user"></i></span>
 									</div>
-									<input class="form-control" type="text" name="usuario" placeholder="Usuário" required />
+									<input class="form-control" id="usuario" type="text" name="usuario" placeholder="Insira Seu Nome de Usuário" required />
 								</div>
 							</div>
-								
+							
 							<div class="form-group">
-								<label class="label" for="senha">Senha</label>
+								<label class="font-weight-bold" for="senha">Senha</label>
 								<div class="input-group">
 									<div class="input-group-prepend">
 										<span class="input-group-text"><i class="fas fa-key"></i></span>
 									</div>
-									<input class="form-control" type="password" name="senha" placeholder="Senha" required />
+									<input class="form-control" id="senha" type="password" name="senha" placeholder="Insira Sua Senha" required />
 								</div>
 							</div>
 							
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" name="lembrarMe" />
-								<label class="form-check-label" for="lembrarSenha">Lembrar-Me</label>
+							<div class="form-group">
+								<label class="font-weight-bold" for="confirmaSenha">Senha</label>
+								<div class="input-group">
+									<div class="input-group-prepend">
+										<span class="input-group-text"><i class="fas fa-key"></i></span>
+									</div>
+									<input class="form-control" id="senha" type="password" name="confirmaSenha" placeholder="Confirme Sua Senha" required />
+								</div>
 							</div>
-
-							<input class="btn btn-success btn-block mt-4" type="submit" value="Entrar"/>
+							
+							<input class="d-none" type="submit" id="botaoCadastrar" />
 						</form>
 					</div>
 					
 					<div class="card-footer">
-						<a class="mt-4" href="cadastro-usuario.jsp">Ainda não tem conta?</a>
+						<div class="row justify-content-between">
+							<a href="index.jsp"><label class="btn btn-outline-primary">Voltar</label></a>
+							<label class="btn btn-success" for="botaoCadastrar">Cadastrar</label>
+						</div>
 					</div>
 				</div>
 			</div>
+			
 		</div>
-		
 		<script src="js/jquery/jquery.slim.min.js"></script>
 		<script src="js/popper/popper.min.js"></script>
 		<script src="js/bootstrap/bootstrap.min.js"></script>
