@@ -6,13 +6,14 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import br.com.fatec.config.aplicacao.EntidadeDominio;
+import br.com.fatec.config.aplicacao.Resultado;
 import br.com.fatec.config.hibernate.HibernateConfig;
 import br.com.fatec.config.patterns.IDao;
 
 public class DaoGenerico implements IDao{
 	
 	@Override
-	public <T> void salva(EntidadeDominio entidade){
+	public <T> Resultado salva(EntidadeDominio entidade){
 		Transaction transaction = null;
 		
 		try(Session session = HibernateConfig.getSessionFactory().openSession()){
@@ -23,8 +24,12 @@ public class DaoGenerico implements IDao{
 			
 			transaction.commit();
 			session.close();
+			return new Resultado(entidade.getClass().getSimpleName()+" foi salvo com sucesso",
+								"ok",
+								true);
 		}catch(Exception e) {
 			e.printStackTrace();
+			return new Resultado("Falha ao salvar", "erro de conexao", false);
 		}
 	}
 	

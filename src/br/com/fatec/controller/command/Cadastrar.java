@@ -8,6 +8,7 @@ import lombok.Setter;
 
 @Getter @Setter
 public class Cadastrar extends Command{
+	
 	@Override
 	public Resultado executa(EntidadeDominio e) {
 		return fachada.cadastrar(e);

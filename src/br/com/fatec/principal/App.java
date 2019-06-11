@@ -1,6 +1,7 @@
 package br.com.fatec.principal;
 
 import br.com.fatec.config.aplicacao.Resultado;
+import br.com.fatec.config.patterns.Command;
 import br.com.fatec.controller.command.Cadastrar;
 import br.com.fatec.model.domain.Usuario;
 
@@ -10,11 +11,13 @@ public class App {
 		
 		Usuario usuario = new Usuario();
 		usuario.setIsAtivo(true);
-		usuario.setNome("joao");
-		usuario.setSenha("122123123123");
+		usuario.setNome("lucas");
+		usuario.setSenha("050523232323");
 	
-		Cadastrar cad = new Cadastrar();	
+		Command cad = new Cadastrar();
+		
 		Resultado resultado = cad.executa(usuario);
+		
 		System.out.println(resultado.getMensagem());
 		System.out.println(resultado.getMotivo());
 		

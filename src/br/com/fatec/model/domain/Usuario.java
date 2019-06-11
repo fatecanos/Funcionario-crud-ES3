@@ -23,6 +23,9 @@ public class Usuario extends EntidadeDominio{
 	@Override
 	public Resultado processa() {
 		Resultado resultado = new Resultado();
+		resultado.setMensagem("nada aconteceu");
+		resultado.setMotivo("erro na hora de validar");
+		resultado.setStatus(false);
 		if(this.nome.equals("") || this.nome.equals(null)||
 				this.senha.equals("") || this.senha.equals(null)) {
 			resultado.setMensagem("Campos inválidos");

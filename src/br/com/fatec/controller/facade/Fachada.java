@@ -11,21 +11,12 @@ import br.com.fatec.model.domain.CategoriaInativacao;
 
 public class Fachada implements IFachada{
 	
-	DaoGenerico dao = new DaoGenerico();
-	
 	@Override
 	public Resultado cadastrar(EntidadeDominio e) {
 		Resultado resultadoValidacao = Validate.valida(e);
-		if(resultadoValidacao.getStatus()) {
-			try {
-				dao.salva(e);
-				return new Resultado("Cadastro efetuado com sucesso", "ok", true);
-			}catch (Exception excessao) {
-				return new Resultado("Erro ao cadastrar", "erro de persistencia", false);
-			}
-		}else {
-			return resultadoValidacao;
-		}
+		if(resultadoValidacao.getStatus().equals(true)) 
+			return new DaoGenerico().salva(e);
+		return resultadoValidacao;
 	}
 
 	@Override

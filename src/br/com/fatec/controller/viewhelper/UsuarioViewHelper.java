@@ -1,8 +1,8 @@
 package br.com.fatec.controller.viewhelper;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,11 +25,10 @@ public class UsuarioViewHelper implements IHelper{
 	@Override
 	public void setView(Resultado resultado, HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		RequestDispatcher reqDispatcher = null;
-		request.getSession().setAttribute("resposta", resultado.getMensagem());
-		request.getSession().setAttribute("resultado", resultado);
-		reqDispatcher = request.getRequestDispatcher("index.jsp");
-		reqDispatcher.forward(request, response);
+		PrintWriter out = response.getWriter();
+		out.println("Peguei isso: "+ getEntidade(request).getClass().getSimpleName());
+		request.setAttribute("Mensagem: ", resultado.getMensagem() + ": "+ resultado.getMotivo());
+		request.getRequestDispatcher("/index.jsp?resultado="+resultado.getMensagem()).forward(request, response);
 	}
 	
 }	

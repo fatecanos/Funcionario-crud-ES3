@@ -1,6 +1,7 @@
 package br.com.fatec.controller.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 
 import javax.servlet.ServletException;
@@ -45,17 +46,17 @@ public class Servico extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException {
+												throws ServletException, IOException {
 		doProcessRequest(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException {
+												throws ServletException, IOException {
 		doProcessRequest(request, response);
 	}
 
 	protected void doProcessRequest(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+														throws ServletException, IOException {
 
 		String uri = request.getRequestURI();
 		String metodo = request.getParameter("metodo");
@@ -64,10 +65,18 @@ public class Servico extends HttpServlet {
 		IHelper vh = viewHelpers.get(uri+metodo);
 		EntidadeDominio entidade =  vh.getEntidade(request);
 		
-		Command command = comandos.get(operacao);
+		PrintWriter out = response.getWriter();
 		
+		out.println("Classe encontrada: "+ entidade.getClass().getSimpleName());
+		out.println("Metodo solicitado:" + metodo);
+		out.println("Operacao solicitada: "+operacao);
+		out.println("URI:"+ uri+metodo);
+		
+		Command command = comandos.get("salvar");
 		Resultado resultado = command.executa(entidade);
-		vh.setView(resultado, request, response);
+		out.println("Mensagem: "+resultado.getMensagem() + ": "+ resultado.getMotivo());
+		
+		//vh.setView(resultado, request, response);
 		
 	}
 	
