@@ -23,10 +23,10 @@ public class Fachada implements IFachada{
 	public Resultado editar(EntidadeDominio e) {
 		try {
 			new DaoGenerico().atualiza(e);
-			return new Resultado("Atualização efetuada com sucesso", "ok", true, null);
+			return new Resultado("Atualização efetuada com sucesso", "ok", true, null, null);
 		}catch(Exception ex) {
 			ex.printStackTrace();
-			return new Resultado("Erro ao atualizar", "erro no banco de dados", false, null);
+			return new Resultado("Erro ao atualizar", "erro no banco de dados", false, null, null);
 		}
 	}
 
@@ -34,10 +34,10 @@ public class Fachada implements IFachada{
 	public Resultado excluir(EntidadeDominio e) {
 		try {
 			new DaoGenerico().exclui(e);
-			return new Resultado("Exclusão efetuada com sucesso", "ok", true, null);
+			return new Resultado("Exclusão efetuada com sucesso", "ok", true, null, null);
 		}catch(Exception ex) {
 			ex.printStackTrace();
-			return new Resultado("Erro ao excluir", "erro no banco de dados", false, null);
+			return new Resultado("Erro ao excluir", "erro no banco de dados", false, null, null);
 		}
 	}
 
@@ -55,6 +55,11 @@ public class Fachada implements IFachada{
 
 	@Override
 	public Resultado consultar(EntidadeDominio e) {
+		return null;
+	}
+
+	@Override
+	public <T> Resultado consultarTodos(Class<T> entidade) {
 		return null;
 	}
 

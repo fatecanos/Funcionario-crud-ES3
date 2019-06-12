@@ -1,4 +1,4 @@
-package br.com.fatec.model.dao;
+	package br.com.fatec.model.dao;
 
 import java.util.List;
 
@@ -29,16 +29,16 @@ public class DaoGenerico implements IDao{
 			session.close();
 			return new Resultado(entidade.getClass().getSimpleName()+" foi salvo com sucesso",
 								"ok",
-								true, null);
+								true, null, null);
 		}catch(ConstraintViolationException ex) {
 			ex.printStackTrace();
-			return new Resultado("Falha ao salvar", entidade.getClass().getSimpleName()+" ja existe", false, null);
+			return new Resultado("Falha ao salvar", entidade.getClass().getSimpleName()+" ja existe", false, null, null);
 		}catch (PersistenceException ex) {
 			ex.printStackTrace();
-			return new Resultado("Falha ao salvar", entidade.getClass().getSimpleName()+" ja existe", false, null);
+			return new Resultado("Falha ao salvar", entidade.getClass().getSimpleName()+" ja existe", false, null, null);
 		}catch (Exception ex) {
 			ex.printStackTrace();
-			return new Resultado("Falha ao salvar", "erro de conexao", false,null);
+			return new Resultado("Falha ao salvar", "erro de conexao", false, null, null);
 		}
 	}
 	
@@ -56,7 +56,7 @@ public class DaoGenerico implements IDao{
 			
 			transaction.commit();
 			session.close();
-
+			
 			return entidades;
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -76,10 +76,11 @@ public class DaoGenerico implements IDao{
 			
 			transaction.commit();
 			session.close();
-			return new Resultado(entidade.getClass().getSimpleName()+" atualizado com sucesso", "ok", true, null);
+			
+			return new Resultado(entidade.getClass().getSimpleName()+" atualizado com sucesso", "ok", true, null, null);
 		}catch(Exception e) {
 			e.printStackTrace();
-			return new Resultado("Erro ao atualizar", "erro no banco de dados", false, null);
+			return new Resultado("Erro ao atualizar", "erro no banco de dados", false, null, null);
 		}
 		
 	}
@@ -96,32 +97,31 @@ public class DaoGenerico implements IDao{
 			
 			transaction.commit();
 			session.close();
-			return new Resultado(entidade.getClass().getSimpleName()+" atualizado com sucesso", "ok", true, null);
+			return new Resultado(entidade.getClass().getSimpleName()+" atualizado com sucesso", "ok", true, null, null);
 		}catch(Exception e) {
 			e.printStackTrace();
-			return new Resultado("Erro ao atualizar", "erro no banco de dados", false, null);
+			return new Resultado("Erro ao atualizar", "erro no banco de dados", false, null, null);
 		}
-		
 	}
 
 	@Override
-	public <T> EntidadeDominio buscarPorId(int id, Class<T> entidade) {
+	public Resultado buscarPorId(EntidadeDominio entidade) {
 		Transaction transaction = null;
 		try (Session session = HibernateConfig.getSessionFactory().openSession()){
-			EntidadeDominio e;
+			EntidadeDominio objeto = null;
 			
 			transaction = session.getTransaction();
 			transaction.begin();
 			
-			e = (EntidadeDominio) session.createQuery("FROM "+entidade.getClass().getSimpleName()+"where(id="+id+")").getSingleResult();
+			objeto = session.find(entidade.getClass(), entidade.getId());			
 			
 			transaction.commit();
 			session.close();
 
-			return e;
+			return new Resultado(entidade.getClass().getSimpleName()+" encontrado.", "ok", true, objeto, null);
 		}catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			return new Resultado(entidade.getClass().getSimpleName()+" não encontrado.", "inexistente", false, null, null);
 		}
 	}
 

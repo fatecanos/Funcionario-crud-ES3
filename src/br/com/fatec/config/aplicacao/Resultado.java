@@ -1,5 +1,7 @@
 package br.com.fatec.config.aplicacao;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,4 +13,5 @@ public class Resultado {
 	private String motivo;
 	private Boolean status;
 	private EntidadeDominio entidade;
+	private List<EntidadeDominio> lista;
 }

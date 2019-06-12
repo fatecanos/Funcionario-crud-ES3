@@ -22,7 +22,7 @@ public class Regional extends EntidadeDominio{
 
 	@Override
 	public Resultado processa() {
-		return new Resultado("Pode salvar", "ok", true, null);
+		return new Resultado("Pode salvar", "ok", true, null, null);
 	}
 	
 	
