@@ -14,12 +14,12 @@ import lombok.Setter;
 @Getter @Setter @AllArgsConstructor @NoArgsConstructor
 public class Usuario extends EntidadeDominio{
 	
-	@Column(name="nome_usuario", nullable=false)
+	@Column(name="nome_usuario", nullable=false, unique=true)
 	private String nome;
 	
 	@Column(name="senha_usuario", nullable=false)
 	private String senha;
-
+	
 	@Override
 	public Resultado processa() {
 		Resultado resultado = new Resultado();
@@ -28,11 +28,11 @@ public class Usuario extends EntidadeDominio{
 		resultado.setStatus(false);
 		if(this.nome.equals("") || this.nome.equals(null)||
 				this.senha.equals("") || this.senha.equals(null)) {
-			resultado.setMensagem("Campos inválidos");
+			resultado.setMensagem("Formulario invalido");
 			resultado.setMotivo("Campo vazio");
 			resultado.setStatus(false);
 		}else if(this.senha.length() < 8){
-			resultado.setMensagem("Campos inválidos");
+			resultado.setMensagem("Formulario invalido");
 			resultado.setMotivo("Senha muito curta");
 			resultado.setStatus(false);
 		}else {

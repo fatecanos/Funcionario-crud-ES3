@@ -1,8 +1,15 @@
 package br.com.fatec.principal;
 
+import java.time.LocalDate;
+
 import br.com.fatec.config.aplicacao.Resultado;
 import br.com.fatec.config.patterns.Command;
 import br.com.fatec.controller.command.Cadastrar;
+import br.com.fatec.model.dao.DaoGenerico;
+import br.com.fatec.model.domain.Cargo;
+import br.com.fatec.model.domain.Funcionario;
+import br.com.fatec.model.domain.Regional;
+import br.com.fatec.model.domain.Setor;
 import br.com.fatec.model.domain.Usuario;
 
 public class App {
@@ -11,52 +18,37 @@ public class App {
 		
 		Usuario usuario = new Usuario();
 		usuario.setIsAtivo(true);
-		usuario.setNome("lucas");
+		usuario.setNome("joao");
 		usuario.setSenha("050523232323");
 	
 		Command cad = new Cadastrar();
 		
-		Resultado resultado = cad.executa(usuario);
+		/*Resultado resultado = cad.executa(usuario);
+		System.out.println(resultado.getMensagem()+": "+resultado.getMotivo());
 		
-		System.out.println(resultado.getMensagem());
-		System.out.println(resultado.getMotivo());
+		Regional regional = new Regional(true, "Sul");
+		Setor setor = new Setor(true, "Administrativo", regional);
+		Cargo cargo = new Cargo(true, "Gerente", setor);
 		
-		/*Regional regional = new Regional();
-		regional.setNome("Sul");
-		regional.setAtivo(true);
-		resultado = new CadastrarCommand().executa(regional);
-		System.out.println(resultado.getMensagem());
-		System.out.println("Status:" + resultado.getMotivo());
-		
-		Setor setor = new Setor();
-		setor.setNome("Shield");
-		setor.setRegional(regional);
-		setor.setAtivo(true);
-		resultado = new CadastrarCommand().executa(setor);
-		System.out.println(resultado.getMensagem());
-		System.out.println("Status:" + resultado.getMotivo());
-		
-		Cargo cargo = new Cargo();
-		cargo.setNome("Administrativo");
-		cargo.setSetor(setor);
-		cargo.setAtivo(true);
-		resultado = new CadastrarCommand().executa(cargo);
-		System.out.println(resultado.getMensagem());
-		System.out.println("Status:" + resultado.getMotivo());
+		resultado = cad.executa(regional);
+		resultado = cad.executa(setor);
+		resultado = cad.executa(cargo);*/
 		
 		Funcionario funcionario = new Funcionario();
-		funcionario.setNome("Lucas Nogueira");
-		funcionario.setDataContratacao(LocalDate.of(1998, 02, 06));
-		funcionario.setCpf("423254234");
+		funcionario.setNome("Lucas Marques Nogueira");
+		funcionario.setCpf("12323123123");
+		funcionario.setDataCadastro(LocalDate.now());
+		funcionario.setDataContratacao(LocalDate.now());
+		funcionario.setNumeroMatricula(123);
+		funcionario.setEmail("lucas@gmail.com");
 		funcionario.setCargo(cargo);
 		funcionario.setUsuario(usuario);
-		funcionario.setEmail("lucas@gmail.com");
-		funcionario.setDataCadastro(LocalDate.now());
-		funcionario.setAtivo(true);
+		funcionario.setIsAtivo(true);
 		
-		resultado = new CadastrarCommand().executa(funcionario);
-		System.out.println(resultado.getMensagem());
-		System.out.println("Status:" + resultado.getMotivo());*/
+		resultado = cad.executa(funcionario);
+		
+		System.out.println(resultado.getMensagem() + ": "+ resultado.getMotivo());
+		
 	}
 
 }

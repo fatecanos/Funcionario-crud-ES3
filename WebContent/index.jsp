@@ -1,13 +1,7 @@
-<%@page
-language="java"
-contentType="text/html; charset=ISO-8859-1"
-pageEncoding="ISO-8859-1"
-%>
-
+<%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="pt-br">
 	<head>
-		<meta charset="UTF-8" />
 		<title>Login</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="author" content="Guilherme Puras & Lucas Nogueira" />
@@ -17,7 +11,10 @@ pageEncoding="ISO-8859-1"
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" />
 	</head>
 	<body>
-		<div><%=request.getAttribute("resposta")%></div>
+		
+		<div> 
+			<h4><%=request.getParameter("resultado")%></h4>	
+		</div>
 		<div class="container-fluid h-100 bg-secondary">
 			<div class="col-4 offset-4 h-100">
 				<div class ="card card-login">

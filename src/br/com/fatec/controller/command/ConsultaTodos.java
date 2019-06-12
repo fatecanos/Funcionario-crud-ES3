@@ -8,9 +8,7 @@ public class ConsultaTodos extends Command{
 
 	@Override
 	public Resultado executa(EntidadeDominio e) {
-		// TODO Auto-generated method stub
-		return null;
+		return fachada.consultar(e);
 	}
 
-	
 }

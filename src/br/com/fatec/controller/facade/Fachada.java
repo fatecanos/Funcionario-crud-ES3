@@ -1,6 +1,4 @@
-	package br.com.fatec.controller.facade;
-
-import java.util.List;
+package br.com.fatec.controller.facade;
 
 import br.com.fatec.config.aplicacao.EntidadeDominio;
 import br.com.fatec.config.aplicacao.Resultado;
@@ -14,8 +12,10 @@ public class Fachada implements IFachada{
 	@Override
 	public Resultado cadastrar(EntidadeDominio e) {
 		Resultado resultadoValidacao = Validate.valida(e);
+		
 		if(resultadoValidacao.getStatus().equals(true)) 
 			return new DaoGenerico().salva(e);
+		
 		return resultadoValidacao;
 	}
 
@@ -23,10 +23,10 @@ public class Fachada implements IFachada{
 	public Resultado editar(EntidadeDominio e) {
 		try {
 			new DaoGenerico().atualiza(e);
-			return new Resultado("Atualização efetuada com sucesso", "ok", true);
+			return new Resultado("Atualização efetuada com sucesso", "ok", true, null);
 		}catch(Exception ex) {
 			ex.printStackTrace();
-			return new Resultado("Erro ao atualizar", "erro no banco de dados", false);
+			return new Resultado("Erro ao atualizar", "erro no banco de dados", false, null);
 		}
 	}
 
@@ -34,16 +34,11 @@ public class Fachada implements IFachada{
 	public Resultado excluir(EntidadeDominio e) {
 		try {
 			new DaoGenerico().exclui(e);
-			return new Resultado("Exclusão efetuada com sucesso", "ok", true);
+			return new Resultado("Exclusão efetuada com sucesso", "ok", true, null);
 		}catch(Exception ex) {
 			ex.printStackTrace();
-			return new Resultado("Erro ao excluir", "erro no banco de dados", false);
+			return new Resultado("Erro ao excluir", "erro no banco de dados", false, null);
 		}
-	}
-
-	@Override
-	public <T> List<T> consultarTodos(Class<T> e) {
-		return new DaoGenerico().listarTodos(e);
 	}
 
 	@Override
@@ -56,6 +51,11 @@ public class Fachada implements IFachada{
 	public Resultado ativar(EntidadeDominio e, CategoriaInativacao catInativacao) {
 		e.setIsAtivo(true);
 		return excluir(catInativacao);
+	}
+
+	@Override
+	public Resultado consultar(EntidadeDominio e) {
+		return null;
 	}
 
 	

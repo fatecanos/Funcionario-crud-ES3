@@ -46,8 +46,12 @@ public class Funcionario extends EntidadeDominio{
 	
 	@Override
 	public Resultado processa() {
-		/*if(this.nome.equals(null) || this.nome.equals("")
-		|| this.isAtivo.equals(null)
+		Resultado resultado = new Resultado();
+		resultado.setMensagem("nada aconteceu");
+		resultado.setMotivo("Funcionario invalido");
+		resultado.setStatus(false);
+		
+		if(this.nome.equals(null) || this.nome.equals("")
 		|| this.cargo.equals(null)
 		|| this.cpf.equals(null) || this.cpf.equals("")
 		|| this.dataCadastro.equals(null)
@@ -56,11 +60,17 @@ public class Funcionario extends EntidadeDominio{
 		|| this.numeroMatricula == -1
 		|| this.usuario.equals(null)
 		) {
-			return "Campo vazio";
-		}else if() {
-			
-		}*/
-		return null;
+			resultado.setMensagem("Formulário preenchido incorretamente.");
+			resultado.setMotivo("campos vazios");
+			resultado.setStatus(false);
+			return resultado;
+		}else {
+			resultado.setMensagem("Atributos verificados");
+			resultado.setMotivo("campos preenchidos corretamente");
+			resultado.setStatus(true);
+			return resultado;
+		}
+		
 	}
 	
 }

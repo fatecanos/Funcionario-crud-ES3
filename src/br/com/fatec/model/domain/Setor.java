@@ -26,8 +26,7 @@ public class Setor extends EntidadeDominio{
 
 	@Override
 	public Resultado processa() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Resultado("Pode salvar", "ok", true, null);
 	}
 	
 	

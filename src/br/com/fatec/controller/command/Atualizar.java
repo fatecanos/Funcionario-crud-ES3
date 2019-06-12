@@ -9,8 +9,7 @@ public class Atualizar extends Command{
 
 	@Override
 	public Resultado executa(EntidadeDominio e) {
-		// TODO Auto-generated method stub
-		return null;
+		return fachada.editar(e);
 	}
 	
 }

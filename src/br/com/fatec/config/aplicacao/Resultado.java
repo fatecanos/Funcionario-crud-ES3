@@ -10,4 +10,5 @@ public class Resultado {
 	private String mensagem;
 	private String motivo;
 	private Boolean status;
+	private EntidadeDominio entidade;
 }

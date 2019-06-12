@@ -1,6 +1,5 @@
 package br.com.fatec.config.patterns;
 
-import java.util.List;
 
 import br.com.fatec.config.aplicacao.EntidadeDominio;
 import br.com.fatec.config.aplicacao.Resultado;
@@ -12,5 +11,5 @@ public interface IFachada {
 	public Resultado excluir(EntidadeDominio e);
 	public Resultado inativar(EntidadeDominio e, CategoriaInativacao catInativacao);
 	public Resultado ativar(EntidadeDominio e, CategoriaInativacao catInativacao);
-	public <T> List<T> consultarTodos(Class<T> e);
+	public Resultado consultar(EntidadeDominio e);
 }
