@@ -1,4 +1,4 @@
-	package br.com.fatec.model.dao;
+package br.com.fatec.model.dao;
 
 import java.util.List;
 
@@ -105,7 +105,7 @@ public class DaoGenerico implements IDao{
 	}
 
 	@Override
-	public Resultado buscarPorId(EntidadeDominio entidade) {
+	public <T> Resultado buscarPorId(int id, Class<T> classeEntidade){
 		Transaction transaction = null;
 		try (Session session = HibernateConfig.getSessionFactory().openSession()){
 			EntidadeDominio objeto = null;
@@ -113,15 +113,15 @@ public class DaoGenerico implements IDao{
 			transaction = session.getTransaction();
 			transaction.begin();
 			
-			objeto = session.find(entidade.getClass(), entidade.getId());			
+			objeto = (EntidadeDominio)session.find(classeEntidade, id);			
 			
 			transaction.commit();
 			session.close();
 
-			return new Resultado(entidade.getClass().getSimpleName()+" encontrado.", "ok", true, objeto, null);
+			return new Resultado(classeEntidade.getSimpleName()+" encontrado.", "ok", true, objeto, null);
 		}catch (Exception e) {
 			e.printStackTrace();
-			return new Resultado(entidade.getClass().getSimpleName()+" não encontrado.", "inexistente", false, null, null);
+			return new Resultado(classeEntidade.getSimpleName()+" não encontrado.", "inexistente", false, null, null);
 		}
 	}
 
