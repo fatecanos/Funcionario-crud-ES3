@@ -54,13 +54,21 @@ public class Fachada implements IFachada{
 	}
 
 	@Override
-	public Resultado consultar(EntidadeDominio e) {
-		return null;
+	public <T> Resultado consultaPorId(int id, Class<T> classeEntidade) {
+		return new DaoGenerico().buscarPorId(id, classeEntidade);
 	}
 
 	@Override
 	public <T> Resultado consultarTodos(Class<T> entidade) {
-		return null;
+		Resultado resultado = new Resultado();
+		resultado.setLista(new DaoGenerico().listarTodos(entidade));
+		
+		if(resultado.getLista().equals(null)) {
+			resultado.setMensagem("Nenhum "+entidade.getSimpleName()+" foi encontrado");
+		}else {
+			resultado.setMensagem("Consulta efetuada com sucesso!");
+		}
+		return resultado;
 	}
 
 	

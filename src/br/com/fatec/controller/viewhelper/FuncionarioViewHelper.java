@@ -10,12 +10,11 @@ import br.com.fatec.config.aplicacao.EntidadeDominio;
 import br.com.fatec.config.aplicacao.Resultado;
 import br.com.fatec.config.patterns.IHelper;
 
-
 public class FuncionarioViewHelper implements IHelper {
 
 	@Override
 	public EntidadeDominio getEntidade(HttpServletRequest request) {
-		String nome 				= request.getParameter("nome");
+		/*String nome 				= request.getParameter("nome");
 		String dataContratacao 		= request.getParameter("dataContratacao");
 		String dataCadastro			= request.getParameter("dataCadastro");
 		String numMatricula			= request.getParameter("numMatricula");
@@ -25,9 +24,6 @@ public class FuncionarioViewHelper implements IHelper {
 		int idUsuarioResponsavel 	= Integer.parseInt(request.getParameter("idUsuarioResponsavel"));
 		
 		//cargo : buscar cargo pelo id
-		/*Cargo cargo = new Cargo();
-		cargo.setId(idCargo);
-		cargo = 
 		
 		//usuario: buscar usuario pelo id
 		Usuario usuario = new Usuario().setId(idUsuarioResponsavel);

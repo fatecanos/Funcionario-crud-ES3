@@ -4,12 +4,11 @@ import br.com.fatec.config.aplicacao.EntidadeDominio;
 import br.com.fatec.config.aplicacao.Resultado;
 import br.com.fatec.config.patterns.Command;
 
-public class Consulta extends Command{
-
+public class ConsultarTodos extends Command{
+	
 	@Override
-	public Resultado executa(EntidadeDominio e) {
-		return fachada.consultar(e);
+	public Resultado executa(EntidadeDominio e) {	
+		return fachada.consultarTodos(e.getClass());
 	}
 
-	
 }

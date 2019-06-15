@@ -19,13 +19,23 @@ html, body {
 }
 
 .card-login {
-	top: 14%;
+	top: 8%;
 }
 
 .card-cad-usuario {
-	top: 13%;
+	top: 8%;
 }
 
 .card-cad-funcionario {
 	top: 2%;
+}
+
+.btnSelecao{
+	margin: 0;
+	width: 50%;
+	padding: 0.5px;
+}
+
+.btnSelecao button{
+	display: inline-block;
 }

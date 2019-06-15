@@ -15,10 +15,12 @@ import br.com.fatec.config.patterns.IHelper;
 import br.com.fatec.controller.command.Ativar;
 import br.com.fatec.controller.command.Atualizar;
 import br.com.fatec.controller.command.Cadastrar;
-import br.com.fatec.controller.command.Consulta;
+import br.com.fatec.controller.command.ConsultaPorId;
+import br.com.fatec.controller.command.ConsultarTodos;
 import br.com.fatec.controller.command.Excluir;
 import br.com.fatec.controller.command.Inativar;
 import br.com.fatec.controller.viewhelper.FuncionarioViewHelper;
+import br.com.fatec.controller.viewhelper.RegionalViewHelper;
 import br.com.fatec.controller.viewhelper.UsuarioViewHelper;
 
 
@@ -34,13 +36,17 @@ public class Servico extends HttpServlet {
         comandos.put("salvar", new Cadastrar());
         comandos.put("atualizar", new Atualizar());
         comandos.put("excluir", new Excluir());
-        comandos.put("consultarTodos", new Consulta());
+        comandos.put("consultarPorId", new ConsultaPorId());
+        comandos.put("consultaTodos", new ConsultarTodos());
         comandos.put("inativar", new Inativar());
         comandos.put("ativar", new Ativar());
         
         viewHelpers = new HashMap<>();
         viewHelpers.put("/Funcionario-crud-ES3/Servico/CadastrarUsuario", new UsuarioViewHelper());
         viewHelpers.put("/Funcionario-crud-ES3/Servico/CadastrarFuncionario", new FuncionarioViewHelper());
+        viewHelpers.put("/Funcionario-crud-ES3/Servico/ConsultarRegional", new RegionalViewHelper());
+        viewHelpers.put("/Funcionario-crud-ES3/Servico/ConsultarSetor", new SetorViewHelper());
+        viewHelpers.put("/Funcionario-crud-ES3/Servico/ConsultarCargo", new CargoViewHelper());
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 

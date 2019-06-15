@@ -9,6 +9,6 @@ public interface IDao {
 	public <T> Resultado salva(EntidadeDominio entidade);
 	public <T> Resultado atualiza(T entidade);
 	public <T> Resultado exclui(T entidade);
-	public <T> List<T> listarTodos(Class<T> entidade);
+	public <T> List<EntidadeDominio> listarTodos(Class<T> entidade);
 	public <T> Resultado buscarPorId(int id, Class<T> classeEntidade);
 }

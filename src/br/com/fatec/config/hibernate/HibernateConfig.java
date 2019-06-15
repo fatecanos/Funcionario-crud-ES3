@@ -16,8 +16,8 @@ import br.com.fatec.model.domain.Usuario;
 
 public class HibernateConfig {
 	private static SessionFactory sessionFactory;
-	protected static final String BANCO = "db_funcionario";
-	protected static final String SENHA = "";
+	protected static final String BANCO = "bdfuncionario";
+	protected static final String SENHA = "1234";
 	
     public static SessionFactory getSessionFactory() {
     	

@@ -3,6 +3,9 @@ package br.com.fatec.model.dao;
 import java.util.List;
 
 import javax.persistence.PersistenceException;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Selection;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -15,6 +18,8 @@ import br.com.fatec.config.patterns.IDao;
 
 public class DaoGenerico implements IDao{
 	
+	private Transaction transaction;
+
 	@Override
 	public <T> Resultado salva(EntidadeDominio entidade){
 		Transaction transaction = null;
@@ -44,15 +49,14 @@ public class DaoGenerico implements IDao{
 	
 	@Override
 	@SuppressWarnings("unchecked")
-	public <T> List<T> listarTodos(Class<T> entidade) {
-		Transaction transaction = null;
+	public <T> List<EntidadeDominio> listarTodos(Class<T> entidade) {
+		transaction = null;
 		try (Session session = HibernateConfig.getSessionFactory().openSession()){
-			List<T> entidades;
-			
+			List<EntidadeDominio> entidades;
 			transaction = session.getTransaction();
 			transaction.begin();
 			
-			entidades = session.createQuery("FROM "+entidade.getClass()).getResultList();
+			entidades = session.createQuery("FROM "+entidade).getResultList();
 			
 			transaction.commit();
 			session.close();

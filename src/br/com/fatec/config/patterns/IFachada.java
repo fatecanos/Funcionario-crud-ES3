@@ -10,6 +10,6 @@ public interface IFachada {
 	public Resultado excluir(EntidadeDominio e);
 	public Resultado inativar(EntidadeDominio e, CategoriaInativacao catInativacao);
 	public Resultado ativar(EntidadeDominio e, CategoriaInativacao catInativacao);
-	public Resultado consultar(EntidadeDominio e);
+	public <T> Resultado consultaPorId(int id, Class<T> classeEntidade);
 	public <T> Resultado consultarTodos(Class<T> entidade);
 }

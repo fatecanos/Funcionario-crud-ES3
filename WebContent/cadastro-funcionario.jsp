@@ -3,7 +3,7 @@ language="java"
 contentType="text/html; charset=ISO-8859-1"
 pageEncoding="ISO-8859-1"
 %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
 <!DOCTYPE html>
 <html lang="pt-br">
 	<head>
@@ -82,6 +82,7 @@ pageEncoding="ISO-8859-1"
 								</div>
 							</div>
 							
+							<!-- GRUPO DO CARGO -->
 							<div class="row">
 								<div class="form-group col">
 									<label class="font-weight-bold" for="regional">Regional</label>
@@ -91,6 +92,10 @@ pageEncoding="ISO-8859-1"
 										</div>
 										<select class="form-control" id="regional" name="regional" required>
 											<option>Escolha uma Regional<option>
+			
+											
+											
+											
 										</select>
 									</div>
 								</div>

@@ -1,10 +1,16 @@
 package br.com.fatec.model.domain;
 
+import java.util.Set;
+
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 import br.com.fatec.config.aplicacao.EntidadeDominio;
 import br.com.fatec.config.aplicacao.Resultado;
+import br.com.fatec.config.patterns.IValidacaoStrategy;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,13 +18,17 @@ import lombok.Setter;
 
 @Entity
 @Getter @Setter @AllArgsConstructor @NoArgsConstructor
-public class Usuario extends EntidadeDominio{
+public class Usuario extends EntidadeDominio implements IValidacaoStrategy{
 	
 	@Column(name="nome_usuario", nullable=false, unique=true)
 	private String nome;
 	
 	@Column(name="senha_usuario", nullable=false)
 	private String senha;
+	
+	@ElementCollection
+	@Enumerated(EnumType.STRING)
+	private Set<Perfil> perfis;
 	
 	@Override
 	public Resultado processa() {
